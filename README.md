@@ -2,6 +2,12 @@
 
 A Flutter app that fills in a [Datumprikker](https://datumprikker.nl/) poll based on the calendar on your phone. It is based on the Python/Selenium script [Datumprikker-Autofiller](https://github.com/evo439/Datumprikker-Autofiller).
 
+## Install
+
+Download the latest `DaPri-*.apk` from [Releases](https://github.com/BigRoelof/DaPri-bot/releases/latest) on your Android phone and open it. Android asks you once to allow installing apps from your browser or file manager.
+
+For automatic updates, add this repository's URL to [Obtainium](https://obtainium.imranr.dev/).
+
 ## How it works
 
 1. Share a Datumprikker link to **DaPri** (for example from WhatsApp), or paste it in the app.
@@ -45,6 +51,19 @@ Code layout:
 - `lib/screens/`: home, review, and settings screens
 
 The page selectors (`.eventdate`, `li.yes`, `#nav_next`, `#eventname`, …) come from the original script. If Datumprikker changes its site, `datumprikker_driver.dart` needs updating. Use the globe icon in the app to watch the page while it's being filled in.
+
+### Release signing
+
+Release builds are signed with the key from `android/key.properties`, which is not in git:
+
+```properties
+storeFile=/path/to/dapri-release.jks
+storePassword=…
+keyAlias=dapri
+keyPassword=…
+```
+
+Always sign releases with the same key: Android only installs an update over an existing install when the signatures match. Without `key.properties`, release builds fall back to the debug key.
 
 ### iOS
 
